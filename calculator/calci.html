@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+    .calculator {
+      border: 2px solid #333;
+      padding: 10px;
+      border-radius: 10px;
+      background: #86f2f7;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    #display {
+      width: 90%;
+      font-size: 24px;
+      padding: 10px;
+      margin-bottom: 15px;
+      text-align: right;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 60px);
+      gap: 10px;
+      justify-content: center;
+    }
+    button {
+      padding: 15px;
+      font-size: 18px;
+      border: none;
+      background: #c6f584;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #d0d0d0;
+    }
+    button.operator {
+      background: #f9c74f;
+    }
+    button.equal {
+      background: #90be6d;
+      grid-column: span 2;
+    }
+    button.clear {
+      background: #f94144;
+      color: white;
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calculator">
+  <input type="text" id="display" readonly>
+  <div class="buttons">
+    <button onclick="append('7')">7</button>
+    <button onclick="append('8')">8</button>
+    <button onclick="append('9')">9</button>
+    <button class="operator" onclick="append('/')">/</button>
+    
+    <button onclick="append('4')">4</button>
+    <button onclick="append('5')">5</button>
+    <button onclick="append('6')">6</button>
+    <button class="operator" onclick="append('*')">*</button>
+    
+    <button onclick="append('1')">1</button>
+    <button onclick="append('2')">2</button>
+    <button onclick="append('3')">3</button>
+    <button class="operator" onclick="append('-')">-</button>
+    
+    <button onclick="append('0')">0</button>
+    <button onclick="append('.')">.</button>
+    <button class="equal" onclick="calculate()">=</button>
+    <button class="operator" onclick="append('+')">+</button>
+    
+    <button class="clear" onclick="clearDisplay()">C</button>
+  </div>
+</div>
+
+<script>
+  function append(char) {
+    document.getElementById("display").value += char;
+  }
+
+  function clearDisplay() {
+    document.getElementById("display").value = '';
+  }
+
+  function calculate() {
+    try {
+      let result = eval(document.getElementById("display").value);
+      document.getElementById("display").value = result;
+    } catch (err) {
+      document.getElementById("display").value = "Error";
+    }
+  }
+</script>
+
+</body>
+</html>
